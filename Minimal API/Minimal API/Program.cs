@@ -41,6 +41,16 @@ app.MapGet("/api/Movies/{id:int}", (int id) =>
 });
 
 
+// rota post; cria objeto da classe movies
+app.MapPost("/api/Movies/", (Movie movie) =>
+{
+    movies.Add(movie);
+
+    // debug
+    return Results.Ok(movies);
+});
+
+
 app.Run();
 
 internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
