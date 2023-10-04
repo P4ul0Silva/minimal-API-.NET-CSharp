@@ -16,6 +16,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// cria lista de objetos da classe Movie
 List<Movie> movies = new()
 {
     new() {Id = 1, Rating = 5, Title = "Shrek"},
@@ -25,9 +26,18 @@ List<Movie> movies = new()
     new() {Id = 5, Rating = 5, Title = "The Matrix" }
 };
 
+// rota exemplo get; retorna todos os items de Movie
 app.MapGet("/api/Movies", () =>
 {
     return Results.Ok(movies);
+});
+
+// rota get: retorna apenas um elemento Movie
+app.MapGet("/api/Movies/{id:int}", (int id) =>
+{
+    // usado método single para retornar apenas um elemento
+    // basicamente um filtro usando syntaxe de arrow functions
+    return Results.Ok(movies.Single(movie => movie.Id == id));
 });
 
 
