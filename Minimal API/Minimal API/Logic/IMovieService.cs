@@ -2,10 +2,10 @@
 {
     public interface IMovieService
     {
-        void Delete(int id);
-        List<Movie> GetAll();
+        Task Delete(int id);
+        Task<List<Movie>> GetAll();
 
-        Movie GetById(int id);
-        void Insert(Movie movie);
+        Task<Movie> GetById(int id);
+        Task Insert(Movie movie);
     }
 }

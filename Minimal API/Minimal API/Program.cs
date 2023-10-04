@@ -27,34 +27,35 @@ app.UseHttpsRedirection();
 
 // rota exemplo get; requisição retorna todos os items de Movie
 // Injeção da interface IMovieService no Método
-app.MapGet("/api/movies", (IMovieService movieService) =>
+// Adiciona async para as callbakcs e await para os métodos de movieService
+app.MapGet("/api/movies", async (IMovieService movieService) =>
 {
-    return Results.Ok(movieService.GetAll());
+    return Results.Ok(await movieService.GetAll());
 });
 
 // rota get: requisição retorna apenas um elemento Movie
-app.MapGet("/api/movies/{id:int}", (int id, IMovieService movieService) =>
+app.MapGet("/api/movies/{id:int}", async (int id, IMovieService movieService) =>
 { 
-    return Results.Ok(movieService.GetById(id));
+    return Results.Ok(await movieService.GetById(id));
 });
 
 
 // rota post; requisição para criar objeto da classe movies
-app.MapPost("/api/movies/", (Movie movie, IMovieService movieService) =>
+app.MapPost("/api/movies/", async (Movie movie, IMovieService movieService) =>
 {
-    movieService.Insert(movie);
+    await movieService.Insert(movie);
 
     // debug
-    return Results.Ok(movieService.GetAll());
+    return Results.Ok(await movieService.GetAll());
 });
 
 
 // rota delete; requisição para deletar objetos movie
-app.MapDelete("/api/movies/{id:int}", (int id, IMovieService movieService) =>
+app.MapDelete("/api/movies/{id:int}", async (int id, IMovieService movieService) =>
 {
-    movieService.Delete(id);
+    await movieService.Delete(id);
 
-    return Results.Ok(movieService.GetAll());
+    return Results.Ok(await movieService.GetAll());
 });
 
 

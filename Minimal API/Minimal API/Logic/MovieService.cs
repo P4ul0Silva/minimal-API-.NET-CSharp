@@ -13,24 +13,25 @@
             new() {Id = 5, Rating = 5, Title = "The Matrix" },
         };
 
-        public void Delete(int id)
+        // adiciona o retorno como 'async' e 'Task' tornando os métodos assíncronos
+        public async Task Delete(int id)
         {
             _movies.Remove(_movies.Single(x=> x.Id == id));
         }
 
-        public List<Movie> GetAll()
+        public async Task<List<Movie>> GetAll()
         {
             return _movies;
         }
 
-        public Movie GetById(int id)
+        public async Task<Movie> GetById(int id)
         {
             // usado método single para retornar apenas um elemento
             // basicamente um filtro usando syntaxe de arrow functions
-            return _movies.Single(x=> x.Id == id);
+            return _movies.Single(x => x.Id == id);
         }
 
-        public void Insert(Movie movie)
+        public async Task Insert(Movie movie)
         {
             _movies.Add(movie);
         }
