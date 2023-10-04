@@ -26,13 +26,13 @@ List<Movie> movies = new()
     new() {Id = 5, Rating = 5, Title = "The Matrix" }
 };
 
-// rota exemplo get; retorna todos os items de Movie
+// rota exemplo get; requisição retorna todos os items de Movie
 app.MapGet("/api/Movies", () =>
 {
     return Results.Ok(movies);
 });
 
-// rota get: retorna apenas um elemento Movie
+// rota get: requisição retorna apenas um elemento Movie
 app.MapGet("/api/Movies/{id:int}", (int id) =>
 {
     // usado método single para retornar apenas um elemento
@@ -41,7 +41,7 @@ app.MapGet("/api/Movies/{id:int}", (int id) =>
 });
 
 
-// rota post; cria objeto da classe movies
+// rota post; requisição para criar objeto da classe movies
 app.MapPost("/api/Movies/", (Movie movie) =>
 {
     movies.Add(movie);
@@ -51,12 +51,19 @@ app.MapPost("/api/Movies/", (Movie movie) =>
 });
 
 
+// rota delete; requisição para deletar objetos movie
+app.MapDelete("/api/Movies/{id:int}", (int id) =>
+{
+    movies.Remove(movies.Single(movie => movie.Id == id));
+});
+
+
 app.Run();
 
 internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+};
 
 
 public class Movie
@@ -65,4 +72,4 @@ public class Movie
     public string Title { get; set; }
     public int Rating { get; set; }
 
-}
+};
