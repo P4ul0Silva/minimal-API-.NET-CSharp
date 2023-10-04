@@ -27,13 +27,13 @@ List<Movie> movies = new()
 };
 
 // rota exemplo get; requisição retorna todos os items de Movie
-app.MapGet("/api/Movies", () =>
+app.MapGet("/api/movies", () =>
 {
     return Results.Ok(movies);
 });
 
 // rota get: requisição retorna apenas um elemento Movie
-app.MapGet("/api/Movies/{id:int}", (int id) =>
+app.MapGet("/api/movies/{id:int}", (int id) =>
 {
     // usado método single para retornar apenas um elemento
     // basicamente um filtro usando syntaxe de arrow functions
@@ -42,7 +42,7 @@ app.MapGet("/api/Movies/{id:int}", (int id) =>
 
 
 // rota post; requisição para criar objeto da classe movies
-app.MapPost("/api/Movies/", (Movie movie) =>
+app.MapPost("/api/movies/", (Movie movie) =>
 {
     movies.Add(movie);
 
@@ -52,9 +52,20 @@ app.MapPost("/api/Movies/", (Movie movie) =>
 
 
 // rota delete; requisição para deletar objetos movie
-app.MapDelete("/api/Movies/{id:int}", (int id) =>
+app.MapDelete("/api/movies/{id:int}", (int id) =>
 {
     movies.Remove(movies.Single(movie => movie.Id == id));
+});
+
+
+// rota put; requisição para atualizar objeto movie
+app.MapPut("/api/movies", (Movie movie) =>
+{
+    Movie foundMovie = movies.Single(x => x.Id == movie.Id);
+
+    foundMovie.Rating = movie.Rating;
+
+    return Results.Ok(movies);
 });
 
 
