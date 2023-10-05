@@ -13,6 +13,7 @@ Após o comando 'run' a documentação da API pode ser acessada atraves do
 https://localhost:7257/swagger/index.html
 ```
 
-![image](https://github.com/P4ul0Silva/minimal-API-.NET-CSharp/assets/79770252/8b3e0fc8-0a81-4a5d-8ee8-149271592d7d)
+![Screenshot 2023-10-05 184331](https://github.com/P4ul0Silva/minimal-API-.NET-CSharp/assets/79770252/dae2dbbd-29f4-4e2c-a361-a4bee7213f7c)
+
 
 Para testar as rotas basta selecionar e clicar em 'Try it out'.
